@@ -1,0 +1,64 @@
+{
+    "experiment": "20260424_v4_phase1_mj_pretrain",
+    "description": "v4 Phase 1: MJ-only pretrain. Keeps v2 sweet-spot arch [1024,1024,512]. NEW vs v2: batch=1024 (4x GPU util), lr=6e-4 (scaled), warmup=20ep, EMA decay=0.9995, eval-with-ema=true, val_split=0.15 (stable val), obs_noise=0.02, action_smooth_weight=0.05 (anti-twitch). Target: push best_epoch past ep 20 with monotonically improving EMA val curve.",
+    "data": {
+        "data_sources": [
+            {
+                "name": "mujoco_expert_v4",
+                "episodes_jsonl": "../data_collector/mujoco_expert_v4/episodes.jsonl",
+                "events_jsonl": "../data_collector/mujoco_expert_v4/events.jsonl",
+                "source_id": 0
+            }
+        ],
+        "g1_joint_names": [
+            "left_shoulder_pitch_joint", "left_shoulder_roll_joint",
+            "left_shoulder_yaw_joint", "left_elbow_joint",
+            "right_shoulder_pitch_joint", "right_shoulder_roll_joint",
+            "right_shoulder_yaw_joint", "right_elbow_joint"
+        ],
+        "allowed_outcomes": ["success", "timeout"],
+        "train_split": 0.85,
+        "seq_len": 1,
+        "stride": 1,
+        "obs_clip_z": 8.0,
+        "act_clip_z": 8.0,
+        "max_abs_g1_velocity": 10.0,
+        "max_abs_g1_delta": 1.0,
+        "sample_weighting": {
+            "success_bonus": 0.5,
+            "near_target_bonus": 0.3,
+            "near_target_threshold": 0.25,
+            "idle_discount": 0.3,
+            "moving_bonus": 0.15,
+            "approaching_bonus": 0.25,
+            "max_weight": 3.0
+        }
+    },
+    "train": {
+        "seed": 42,
+        "epochs": 600,
+        "batch_size": 1024,
+        "lr": 6e-4,
+        "weight_decay": 1e-4,
+        "grad_clip_norm": 1.0,
+        "early_stop_patience": 200,
+        "success_loss_weight": 0.2,
+        "obs_noise_std": 0.02,
+        "lr_scheduler": "cosine",
+        "lr_warmup_epochs": 20,
+        "loss_type": "mse",
+        "save_topk": 3,
+        "ema_decay": 0.9995,
+        "eval_with_ema": true,
+        "action_smooth_weight": 0.05
+    },
+    "act_chunk": {
+        "backbone": "mlp_film",
+        "chunk_size": 5,
+        "hidden_dims": [1024, 1024, 512],
+        "dropout": 0.1,
+        "num_domains": 2,
+        "cond_dim": 16,
+        "default_domain_id": 0
+    }
+}

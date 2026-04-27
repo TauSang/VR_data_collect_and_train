@@ -1,0 +1,35 @@
+{
+  "data": {
+    "episodes_jsonl": "../../data_collector/collector5/vr-demonstrations-episodes-20260325_111750.jsonl",
+    "joint_names": [
+      "leftShoulder",
+      "leftUpperArm",
+      "leftLowerArm",
+      "leftHand",
+      "rightShoulder",
+      "rightUpperArm",
+      "rightLowerArm",
+      "rightHand"
+    ],
+    "use_joint_velocities": true,
+    "seq_len": 16,
+    "train_split": 0.8
+  },
+  "train": {
+    "epochs": 50,
+    "batch_size": 128,
+    "lr": 0.0003,
+    "weight_decay": 1e-5,
+    "seed": 42
+  },
+  "bc": {
+    "hidden_dims": [256, 256]
+  },
+  "act": {
+    "d_model": 128,
+    "nhead": 4,
+    "num_layers": 3,
+    "dim_feedforward": 256,
+    "dropout": 0.1
+  }
+}

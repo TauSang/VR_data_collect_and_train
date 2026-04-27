@@ -1,0 +1,63 @@
+{
+  "experiment": "act_chunk_mujoco_only_lite",
+  "description": "ACT-Chunk-Lite trained only on MuJoCo expert data (baseline, lighter model for CPU)",
+  "data": {
+    "data_sources": [
+      {
+        "name": "mujoco_expert_v4",
+        "episodes_jsonl": "../data_collector/mujoco_expert_v4/episodes.jsonl",
+        "events_jsonl": "../data_collector/mujoco_expert_v4/events.jsonl"
+      }
+    ],
+    "g1_joint_names": [
+      "left_shoulder_pitch_joint",
+      "left_shoulder_roll_joint",
+      "left_shoulder_yaw_joint",
+      "left_elbow_joint",
+      "right_shoulder_pitch_joint",
+      "right_shoulder_roll_joint",
+      "right_shoulder_yaw_joint",
+      "right_elbow_joint"
+    ],
+    "allowed_outcomes": ["success", "timeout"],
+    "train_split": 0.85,
+    "seq_len": 10,
+    "obs_clip_z": 8.0,
+    "act_clip_z": 8.0,
+    "max_abs_g1_velocity": 10.0,
+    "max_abs_g1_delta": 1.0,
+    "sample_weighting": {
+      "success_bonus": 0.5,
+      "near_target_bonus": 0.3,
+      "near_target_threshold": 0.25,
+      "idle_discount": 0.3,
+      "moving_bonus": 0.15,
+      "approaching_bonus": 0.25,
+      "max_weight": 3.0
+    }
+  },
+  "train": {
+    "seed": 42,
+    "epochs": 200,
+    "batch_size": 256,
+    "lr": 3e-4,
+    "weight_decay": 1e-4,
+    "grad_clip_norm": 1.0,
+    "early_stop_patience": 30,
+    "success_loss_weight": 0.2,
+    "obs_noise_std": 0.03,
+    "lr_scheduler": "cosine"
+  },
+  "act_chunk": {
+    "chunk_size": 5,
+    "d_model": 128,
+    "nhead": 4,
+    "num_encoder_layers": 3,
+    "num_decoder_layers": 1,
+    "dim_feedforward": 256,
+    "dropout": 0.1,
+    "use_cvae": false,
+    "latent_dim": 16,
+    "kl_weight": 0.01
+  }
+}

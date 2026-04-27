@@ -1,0 +1,381 @@
+{
+  "model_type": "act_chunk",
+  "num_trials": 10,
+  "obs_dim": 31,
+  "act_dim": 8,
+  "joints": [
+    "left_shoulder_pitch_joint",
+    "left_shoulder_roll_joint",
+    "left_shoulder_yaw_joint",
+    "left_elbow_joint",
+    "right_shoulder_pitch_joint",
+    "right_shoulder_roll_joint",
+    "right_shoulder_yaw_joint",
+    "right_elbow_joint"
+  ],
+  "trials": [
+    {
+      "targets": [
+        {
+          "target_num": 1,
+          "outcome": "success",
+          "time_s": 0.48,
+          "min_dist_m": 0.0801
+        },
+        {
+          "target_num": 2,
+          "outcome": "success",
+          "time_s": 1.47,
+          "min_dist_m": 0.1129
+        },
+        {
+          "target_num": 3,
+          "outcome": "success",
+          "time_s": 0.38,
+          "min_dist_m": 0.0986
+        },
+        {
+          "target_num": 4,
+          "outcome": "success",
+          "time_s": 0.67,
+          "min_dist_m": 0.0931
+        },
+        {
+          "target_num": 5,
+          "outcome": "success",
+          "time_s": 0.45,
+          "min_dist_m": 0.0831
+        }
+      ],
+      "total_success": 5,
+      "total_timeout": 0
+    },
+    {
+      "targets": [
+        {
+          "target_num": 1,
+          "outcome": "success",
+          "time_s": 1.15,
+          "min_dist_m": 0.0983
+        },
+        {
+          "target_num": 2,
+          "outcome": "success",
+          "time_s": 0.99,
+          "min_dist_m": 0.1086
+        },
+        {
+          "target_num": 3,
+          "outcome": "success",
+          "time_s": 1.66,
+          "min_dist_m": 0.1087
+        },
+        {
+          "target_num": 4,
+          "outcome": "success",
+          "time_s": 2.05,
+          "min_dist_m": 0.0766
+        },
+        {
+          "target_num": 5,
+          "outcome": "success",
+          "time_s": 0.29,
+          "min_dist_m": 0.0823
+        }
+      ],
+      "total_success": 5,
+      "total_timeout": 0
+    },
+    {
+      "targets": [
+        {
+          "target_num": 1,
+          "outcome": "success",
+          "time_s": 0.77,
+          "min_dist_m": 0.0553
+        },
+        {
+          "target_num": 2,
+          "outcome": "success",
+          "time_s": 0.8,
+          "min_dist_m": 0.0479
+        },
+        {
+          "target_num": 3,
+          "outcome": "success",
+          "time_s": 0.74,
+          "min_dist_m": 0.0829
+        },
+        {
+          "target_num": 4,
+          "outcome": "success",
+          "time_s": 0.51,
+          "min_dist_m": 0.0586
+        },
+        {
+          "target_num": 5,
+          "outcome": "success",
+          "time_s": 1.54,
+          "min_dist_m": 0.1129
+        }
+      ],
+      "total_success": 5,
+      "total_timeout": 0
+    },
+    {
+      "targets": [
+        {
+          "target_num": 1,
+          "outcome": "success",
+          "time_s": 0.48,
+          "min_dist_m": 0.0362
+        },
+        {
+          "target_num": 2,
+          "outcome": "success",
+          "time_s": 0.93,
+          "min_dist_m": 0.0649
+        },
+        {
+          "target_num": 3,
+          "outcome": "success",
+          "time_s": 0.86,
+          "min_dist_m": 0.0518
+        },
+        {
+          "target_num": 4,
+          "outcome": "success",
+          "time_s": 0.29,
+          "min_dist_m": 0.0774
+        },
+        {
+          "target_num": 5,
+          "outcome": "success",
+          "time_s": 1.98,
+          "min_dist_m": 0.1113
+        }
+      ],
+      "total_success": 5,
+      "total_timeout": 0
+    },
+    {
+      "targets": [
+        {
+          "target_num": 1,
+          "outcome": "success",
+          "time_s": 1.09,
+          "min_dist_m": 0.0888
+        },
+        {
+          "target_num": 2,
+          "outcome": "success",
+          "time_s": 0.74,
+          "min_dist_m": 0.0561
+        },
+        {
+          "target_num": 3,
+          "outcome": "success",
+          "time_s": 0.29,
+          "min_dist_m": 0.0698
+        },
+        {
+          "target_num": 4,
+          "outcome": "success",
+          "time_s": 0.67,
+          "min_dist_m": 0.0929
+        },
+        {
+          "target_num": 5,
+          "outcome": "timeout",
+          "time_s": 20.03,
+          "min_dist_m": 0.1408
+        }
+      ],
+      "total_success": 4,
+      "total_timeout": 1
+    },
+    {
+      "targets": [
+        {
+          "target_num": 1,
+          "outcome": "success",
+          "time_s": 1.18,
+          "min_dist_m": 0.1045
+        },
+        {
+          "target_num": 2,
+          "outcome": "success",
+          "time_s": 0.67,
+          "min_dist_m": 0.1033
+        },
+        {
+          "target_num": 3,
+          "outcome": "success",
+          "time_s": 0.29,
+          "min_dist_m": 0.0726
+        },
+        {
+          "target_num": 4,
+          "outcome": "success",
+          "time_s": 0.29,
+          "min_dist_m": 0.0341
+        },
+        {
+          "target_num": 5,
+          "outcome": "success",
+          "time_s": 0.93,
+          "min_dist_m": 0.0914
+        }
+      ],
+      "total_success": 5,
+      "total_timeout": 0
+    },
+    {
+      "targets": [
+        {
+          "target_num": 1,
+          "outcome": "success",
+          "time_s": 1.31,
+          "min_dist_m": 0.0881
+        },
+        {
+          "target_num": 2,
+          "outcome": "success",
+          "time_s": 0.64,
+          "min_dist_m": 0.102
+        },
+        {
+          "target_num": 3,
+          "outcome": "success",
+          "time_s": 0.77,
+          "min_dist_m": 0.0971
+        },
+        {
+          "target_num": 4,
+          "outcome": "success",
+          "time_s": 0.83,
+          "min_dist_m": 0.0905
+        },
+        {
+          "target_num": 5,
+          "outcome": "success",
+          "time_s": 0.93,
+          "min_dist_m": 0.0973
+        }
+      ],
+      "total_success": 5,
+      "total_timeout": 0
+    },
+    {
+      "targets": [
+        {
+          "target_num": 1,
+          "outcome": "success",
+          "time_s": 0.54,
+          "min_dist_m": 0.0847
+        },
+        {
+          "target_num": 2,
+          "outcome": "success",
+          "time_s": 0.7,
+          "min_dist_m": 0.1136
+        },
+        {
+          "target_num": 3,
+          "outcome": "success",
+          "time_s": 0.61,
+          "min_dist_m": 0.0845
+        },
+        {
+          "target_num": 4,
+          "outcome": "success",
+          "time_s": 0.96,
+          "min_dist_m": 0.1179
+        },
+        {
+          "target_num": 5,
+          "outcome": "success",
+          "time_s": 1.22,
+          "min_dist_m": 0.105
+        }
+      ],
+      "total_success": 5,
+      "total_timeout": 0
+    },
+    {
+      "targets": [
+        {
+          "target_num": 1,
+          "outcome": "success",
+          "time_s": 0.48,
+          "min_dist_m": 0.0994
+        },
+        {
+          "target_num": 2,
+          "outcome": "success",
+          "time_s": 0.64,
+          "min_dist_m": 0.106
+        },
+        {
+          "target_num": 3,
+          "outcome": "success",
+          "time_s": 1.7,
+          "min_dist_m": 0.1152
+        },
+        {
+          "target_num": 4,
+          "outcome": "success",
+          "time_s": 0.51,
+          "min_dist_m": 0.0986
+        },
+        {
+          "target_num": 5,
+          "outcome": "success",
+          "time_s": 0.67,
+          "min_dist_m": 0.1047
+        }
+      ],
+      "total_success": 5,
+      "total_timeout": 0
+    },
+    {
+      "targets": [
+        {
+          "target_num": 1,
+          "outcome": "success",
+          "time_s": 0.38,
+          "min_dist_m": 0.0557
+        },
+        {
+          "target_num": 2,
+          "outcome": "success",
+          "time_s": 0.58,
+          "min_dist_m": 0.0639
+        },
+        {
+          "target_num": 3,
+          "outcome": "success",
+          "time_s": 0.61,
+          "min_dist_m": 0.0846
+        },
+        {
+          "target_num": 4,
+          "outcome": "success",
+          "time_s": 1.22,
+          "min_dist_m": 0.1098
+        },
+        {
+          "target_num": 5,
+          "outcome": "success",
+          "time_s": 0.29,
+          "min_dist_m": 0.0891
+        }
+      ],
+      "total_success": 5,
+      "total_timeout": 0
+    }
+  ],
+  "overall_success_rate": 0.98,
+  "total_targets": 50,
+  "total_reached": 49
+}

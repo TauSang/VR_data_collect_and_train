@@ -1,0 +1,47 @@
+seed: 42
+
+experiment:
+  name: act_collector5_task_oriented
+  out_dir: ./artifacts/experiments_act
+
+data:
+  # 以 collector5 为数据基线：聚焦“任务下应该输出什么动作”
+  train_raw_jsonl: ../data_collector/collector5/vr-demonstrations-episodes-20260325_111750.jsonl
+  train_h5_path: ./artifacts/datasets/act_collector5_seq.h5
+
+  # 当前训练脚本在 train 集内按 episode 划分 val；test 字段保留用于统一流程
+  test_raw_jsonl: ../data_collector/collector5/vr-demonstrations-episodes-20260325_111750.jsonl
+  test_h5_path: ./artifacts/datasets/act_collector5_seq.h5
+
+  joint_names:
+    - leftShoulder
+    - leftUpperArm
+    - leftLowerArm
+    - leftHand
+    - rightShoulder
+    - rightUpperArm
+    - rightLowerArm
+    - rightHand
+
+  use_joint_velocities: true
+  include_gripper: false
+
+  seq_len: 16
+  stride: 1
+
+model:
+  d_model: 128
+  nhead: 4
+  num_layers: 3
+  dim_feedforward: 256
+  dropout: 0.1
+
+train:
+  batch_size: 128
+  epochs: 50
+  lr: 0.0003
+  weight_decay: 0.00001
+  log_interval: 20
+
+export:
+  out_path: ./artifacts/exported/policy_act_collector5.pt

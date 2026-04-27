@@ -1,0 +1,77 @@
+{
+    "experiment":  "20260425_v6_phase1_mj_pretrain_throughput",
+    "description":  "v6 Phase 1: v2 recipe + throughput ONLY. batch=2048 (8x), AMP bf16, num_workers=4, longer schedule (2000 ep / patience 400). LR UNCHANGED (3e-4) -- DO NOT scale, see v4 divergence. NO EMA, NO smoothness, NO arch change. Goal: better GPU utilization + more training time, no other risk.",
+    "data":  {
+                 "data_sources":  [
+                                      {
+                                          "name":  "mujoco_expert_v4",
+                                          "episodes_jsonl":  "../data_collector/mujoco_expert_v4/episodes.jsonl",
+                                          "events_jsonl":  "../data_collector/mujoco_expert_v4/events.jsonl",
+                                          "source_id":  0
+                                      }
+                                  ],
+                 "g1_joint_names":  [
+                                        "left_shoulder_pitch_joint",
+                                        "left_shoulder_roll_joint",
+                                        "left_shoulder_yaw_joint",
+                                        "left_elbow_joint",
+                                        "right_shoulder_pitch_joint",
+                                        "right_shoulder_roll_joint",
+                                        "right_shoulder_yaw_joint",
+                                        "right_elbow_joint"
+                                    ],
+                 "allowed_outcomes":  [
+                                          "success",
+                                          "timeout"
+                                      ],
+                 "train_split":  0.9,
+                 "seq_len":  1,
+                 "stride":  1,
+                 "obs_clip_z":  8.0,
+                 "act_clip_z":  8.0,
+                 "max_abs_g1_velocity":  10.0,
+                 "max_abs_g1_delta":  1.0,
+                 "sample_weighting":  {
+                                          "success_bonus":  0.5,
+                                          "near_target_bonus":  0.3,
+                                          "near_target_threshold":  0.25,
+                                          "idle_discount":  0.3,
+                                          "moving_bonus":  0.15,
+                                          "approaching_bonus":  0.25,
+                                          "max_weight":  3.0
+                                      }
+             },
+    "train":  {
+                  "seed":  42,
+                  "epochs":  2,
+                  "batch_size":  2048,
+                  "lr":  0.0003,
+                  "weight_decay":  0.0001,
+                  "grad_clip_norm":  1.0,
+                  "early_stop_patience":  5,
+                  "success_loss_weight":  0.2,
+                  "obs_noise_std":  0.03,
+                  "lr_scheduler":  "cosine",
+                  "lr_warmup_epochs":  1,
+                  "loss_type":  "mse",
+                  "save_topk":  3,
+                  "amp":  true,
+                  "amp_dtype":  "bfloat16",
+                  "num_workers":  4,
+                  "pin_memory":  true,
+                  "persistent_workers":  true
+              },
+    "act_chunk":  {
+                      "backbone":  "mlp_film",
+                      "chunk_size":  5,
+                      "hidden_dims":  [
+                                          1024,
+                                          1024,
+                                          512
+                                      ],
+                      "dropout":  0.1,
+                      "num_domains":  2,
+                      "cond_dim":  16,
+                      "default_domain_id":  0
+                  }
+}

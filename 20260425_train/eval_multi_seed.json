@@ -1,0 +1,218 @@
+[
+  {
+    "label": "improved_best",
+    "scale": 1.0,
+    "ema": 0.0,
+    "per_seed": [
+      {
+        "seed": 42,
+        "succ": 39,
+        "total": 50
+      },
+      {
+        "seed": 7,
+        "succ": 38,
+        "total": 50
+      },
+      {
+        "seed": 123,
+        "succ": 36,
+        "total": 50
+      },
+      {
+        "seed": 2024,
+        "succ": 42,
+        "total": 50
+      },
+      {
+        "seed": 31415,
+        "succ": 40,
+        "total": 50
+      }
+    ],
+    "agg_succ": 195,
+    "agg_total": 250,
+    "agg_sr": 78.0,
+    "worst_sr": 72.0
+  },
+  {
+    "label": "improved_scale1.05",
+    "scale": 1.05,
+    "ema": 0.0,
+    "per_seed": [
+      {
+        "seed": 42,
+        "succ": 41,
+        "total": 50
+      },
+      {
+        "seed": 7,
+        "succ": 37,
+        "total": 50
+      },
+      {
+        "seed": 123,
+        "succ": 37,
+        "total": 50
+      },
+      {
+        "seed": 2024,
+        "succ": 38,
+        "total": 50
+      },
+      {
+        "seed": 31415,
+        "succ": 39,
+        "total": 50
+      }
+    ],
+    "agg_succ": 192,
+    "agg_total": 250,
+    "agg_sr": 76.8,
+    "worst_sr": 74.0
+  },
+  {
+    "label": "improved_scale1.05_ema0.2",
+    "scale": 1.05,
+    "ema": 0.2,
+    "per_seed": [
+      {
+        "seed": 42,
+        "succ": 38,
+        "total": 50
+      },
+      {
+        "seed": 7,
+        "succ": 40,
+        "total": 50
+      },
+      {
+        "seed": 123,
+        "succ": 34,
+        "total": 50
+      },
+      {
+        "seed": 2024,
+        "succ": 40,
+        "total": 50
+      },
+      {
+        "seed": 31415,
+        "succ": 39,
+        "total": 50
+      }
+    ],
+    "agg_succ": 191,
+    "agg_total": 250,
+    "agg_sr": 76.4,
+    "worst_sr": 68.0
+  },
+  {
+    "label": "top1",
+    "scale": 1.0,
+    "ema": 0.0,
+    "per_seed": [
+      {
+        "seed": 42,
+        "succ": 39,
+        "total": 50
+      },
+      {
+        "seed": 7,
+        "succ": 38,
+        "total": 50
+      },
+      {
+        "seed": 123,
+        "succ": 36,
+        "total": 50
+      },
+      {
+        "seed": 2024,
+        "succ": 42,
+        "total": 50
+      },
+      {
+        "seed": 31415,
+        "succ": 40,
+        "total": 50
+      }
+    ],
+    "agg_succ": 195,
+    "agg_total": 250,
+    "agg_sr": 78.0,
+    "worst_sr": 72.0
+  },
+  {
+    "label": "top2",
+    "scale": 1.0,
+    "ema": 0.0,
+    "per_seed": [
+      {
+        "seed": 42,
+        "succ": 42,
+        "total": 50
+      },
+      {
+        "seed": 7,
+        "succ": 38,
+        "total": 50
+      },
+      {
+        "seed": 123,
+        "succ": 40,
+        "total": 50
+      },
+      {
+        "seed": 2024,
+        "succ": 42,
+        "total": 50
+      },
+      {
+        "seed": 31415,
+        "succ": 38,
+        "total": 50
+      }
+    ],
+    "agg_succ": 200,
+    "agg_total": 250,
+    "agg_sr": 80.0,
+    "worst_sr": 76.0
+  },
+  {
+    "label": "top3",
+    "scale": 1.0,
+    "ema": 0.0,
+    "per_seed": [
+      {
+        "seed": 42,
+        "succ": 44,
+        "total": 50
+      },
+      {
+        "seed": 7,
+        "succ": 39,
+        "total": 50
+      },
+      {
+        "seed": 123,
+        "succ": 36,
+        "total": 50
+      },
+      {
+        "seed": 2024,
+        "succ": 40,
+        "total": 50
+      },
+      {
+        "seed": 31415,
+        "succ": 39,
+        "total": 50
+      }
+    ],
+    "agg_succ": 198,
+    "agg_total": 250,
+    "agg_sr": 79.2,
+    "worst_sr": 72.0
+  }
+]

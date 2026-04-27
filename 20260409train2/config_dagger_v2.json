@@ -1,0 +1,63 @@
+{
+  "experiment": "g1_reach_dagger_v2_coordfix_expert_only",
+  "data": {
+    "data_sources": [
+      {
+        "name": "mujoco_expert_v2",
+        "episodes_jsonl": "../data_collector/mujoco_expert_v2/episodes.jsonl",
+        "events_jsonl": "../data_collector/mujoco_expert_v2/events.jsonl"
+      }
+    ],
+    "g1_joint_names": [
+      "left_shoulder_pitch_joint",
+      "left_shoulder_roll_joint",
+      "left_shoulder_yaw_joint",
+      "left_elbow_joint",
+      "right_shoulder_pitch_joint",
+      "right_shoulder_roll_joint",
+      "right_shoulder_yaw_joint",
+      "right_elbow_joint"
+    ],
+    "allowed_outcomes": ["success", "timeout"],
+    "train_split": 0.85,
+    "seq_len": 4,
+    "obs_clip_z": 8.0,
+    "act_clip_z": 8.0,
+    "max_abs_g1_velocity": 10.0,
+    "max_abs_g1_delta": 1.0,
+    "sample_weighting": {
+      "success_bonus": 0.5,
+      "near_target_bonus": 0.3,
+      "near_target_threshold": 0.25,
+      "idle_discount": 0.3,
+      "moving_bonus": 0.15,
+      "approaching_bonus": 0.25,
+      "max_weight": 3.0
+    }
+  },
+  "train": {
+    "seed": 42,
+    "epochs": 200,
+    "batch_size": 128,
+    "lr": 3e-4,
+    "weight_decay": 1e-5,
+    "grad_clip_norm": 1.0,
+    "early_stop_patience": 20,
+    "success_loss_weight": 0.2,
+    "obs_noise_std": 0.1
+  },
+  "bc": {
+    "hidden_dims": [256, 256, 128],
+    "dropout": 0.1
+  },
+  "act": {
+    "d_model": 128,
+    "nhead": 4,
+    "num_layers": 2,
+    "dim_feedforward": 256,
+    "dropout": 0.1,
+    "use_residual_action": false,
+    "readout_mode": "last_token",
+    "readout_norm": false
+  }
+}

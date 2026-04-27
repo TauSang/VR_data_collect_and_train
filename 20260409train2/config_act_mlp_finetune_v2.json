@@ -1,0 +1,54 @@
+{
+    "experiment": "act_mlp_finetune_v2",
+    "description": "Stage 2 v2: Higher lr finetune of VR-pretrained MLP-ACT on MuJoCo expert data.",
+    "data": {
+        "data_sources": [
+            {
+                "name": "mujoco_expert_v4",
+                "episodes_jsonl": "../data_collector/mujoco_expert_v4/episodes.jsonl",
+                "events_jsonl": "../data_collector/mujoco_expert_v4/events.jsonl"
+            }
+        ],
+        "g1_joint_names": [
+            "left_shoulder_pitch_joint", "left_shoulder_roll_joint",
+            "left_shoulder_yaw_joint", "left_elbow_joint",
+            "right_shoulder_pitch_joint", "right_shoulder_roll_joint",
+            "right_shoulder_yaw_joint", "right_elbow_joint"
+        ],
+        "allowed_outcomes": ["success", "timeout"],
+        "train_split": 0.85,
+        "seq_len": 1,
+        "stride": 1,
+        "obs_clip_z": 8.0,
+        "act_clip_z": 8.0,
+        "max_abs_g1_velocity": 10.0,
+        "max_abs_g1_delta": 1.0,
+        "sample_weighting": {
+            "success_bonus": 0.5,
+            "near_target_bonus": 0.3,
+            "near_target_threshold": 0.25,
+            "idle_discount": 0.3,
+            "moving_bonus": 0.15,
+            "approaching_bonus": 0.25,
+            "max_weight": 3.0
+        }
+    },
+    "train": {
+        "seed": 42,
+        "epochs": 200,
+        "batch_size": 512,
+        "lr": 2e-4,
+        "weight_decay": 1e-4,
+        "grad_clip_norm": 1.0,
+        "early_stop_patience": 30,
+        "success_loss_weight": 0.2,
+        "obs_noise_std": 0.02,
+        "lr_scheduler": "cosine"
+    },
+    "act_chunk": {
+        "backbone": "mlp",
+        "chunk_size": 5,
+        "hidden_dims": [256, 256, 128],
+        "dropout": 0.1
+    }
+}

@@ -1,0 +1,57 @@
+{
+  "model_type": "act_chunk",
+  "num_trials": 1,
+  "obs_dim": 31,
+  "act_dim": 8,
+  "joints": [
+    "left_shoulder_pitch_joint",
+    "left_shoulder_roll_joint",
+    "left_shoulder_yaw_joint",
+    "left_elbow_joint",
+    "right_shoulder_pitch_joint",
+    "right_shoulder_roll_joint",
+    "right_shoulder_yaw_joint",
+    "right_elbow_joint"
+  ],
+  "trials": [
+    {
+      "targets": [
+        {
+          "target_num": 1,
+          "outcome": "success",
+          "time_s": 0.48,
+          "min_dist_m": 0.0152
+        },
+        {
+          "target_num": 2,
+          "outcome": "success",
+          "time_s": 0.48,
+          "min_dist_m": 0.1073
+        },
+        {
+          "target_num": 3,
+          "outcome": "success",
+          "time_s": 0.54,
+          "min_dist_m": 0.0965
+        },
+        {
+          "target_num": 4,
+          "outcome": "success",
+          "time_s": 0.35,
+          "min_dist_m": 0.0595
+        },
+        {
+          "target_num": 5,
+          "outcome": "success",
+          "time_s": 1.02,
+          "min_dist_m": 0.0863
+        }
+      ],
+      "total_success": 5,
+      "total_timeout": 0
+    }
+  ],
+  "overall_success_rate": 1.0,
+  "total_targets": 5,
+  "total_reached": 5
+}

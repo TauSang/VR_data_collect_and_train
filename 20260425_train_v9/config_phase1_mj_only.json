@@ -1,0 +1,66 @@
+{
+    "experiment": "20260425_v9_phase1_mj_pretrain_gated_cross_attn_film_v2recipe",
+    "description": "v9 Phase 1 candidate: ACT-Chunk-Gated-CrossAttn-FiLM with the exact stable v2 MJ-only recipe (batch=256, epochs=800, patience=150, fp32). Intended as fallback if v8 safe/frozen variant underperforms v2; keeps MLP-FiLM primary path and small learnable attention residual.",
+    "data": {
+        "data_sources": [
+            {
+                "name": "mujoco_expert_v4",
+                "episodes_jsonl": "../data_collector/mujoco_expert_v4/episodes.jsonl",
+                "events_jsonl": "../data_collector/mujoco_expert_v4/events.jsonl",
+                "source_id": 0
+            }
+        ],
+        "g1_joint_names": [
+            "left_shoulder_pitch_joint", "left_shoulder_roll_joint",
+            "left_shoulder_yaw_joint", "left_elbow_joint",
+            "right_shoulder_pitch_joint", "right_shoulder_roll_joint",
+            "right_shoulder_yaw_joint", "right_elbow_joint"
+        ],
+        "allowed_outcomes": ["success", "timeout"],
+        "train_split": 0.9,
+        "seq_len": 1,
+        "stride": 1,
+        "obs_clip_z": 8.0,
+        "act_clip_z": 8.0,
+        "max_abs_g1_velocity": 10.0,
+        "max_abs_g1_delta": 1.0,
+        "sample_weighting": {
+            "success_bonus": 0.5,
+            "near_target_bonus": 0.3,
+            "near_target_threshold": 0.25,
+            "idle_discount": 0.3,
+            "moving_bonus": 0.15,
+            "approaching_bonus": 0.25,
+            "max_weight": 3.0
+        }
+    },
+    "train": {
+        "seed": 42,
+        "epochs": 800,
+        "batch_size": 256,
+        "lr": 3e-4,
+        "weight_decay": 1e-4,
+        "grad_clip_norm": 1.0,
+        "early_stop_patience": 150,
+        "success_loss_weight": 0.2,
+        "obs_noise_std": 0.03,
+        "lr_scheduler": "cosine",
+        "lr_warmup_epochs": 10,
+        "loss_type": "mse",
+        "save_topk": 3
+    },
+    "act_chunk": {
+        "backbone": "gated_cross_attn_film",
+        "chunk_size": 5,
+        "d_model": 64,
+        "nhead": 4,
+        "hidden_dims": [1024, 1024, 512],
+        "dropout": 0.1,
+        "attn_dropout": 0.05,
+        "residual_init": 0.01,
+        "num_domains": 2,
+        "cond_dim": 16,
+        "default_domain_id": 0,
+        "proprio_dim": 16
+    }
+}

@@ -1,0 +1,33 @@
+seed: 42
+
+data:
+  # 修改为你的最新 episodes.jsonl 路径
+  raw_jsonl: ../data_collector/collector2/vr-demonstrations-episodes-20260313_142003.jsonl
+  h5_path: ./artifacts/datasets/train.h5
+  use_joint_velocities: true
+  include_gripper: false
+  joint_names:
+    - leftShoulder
+    - leftUpperArm
+    - leftLowerArm
+    - leftHand
+    - rightShoulder
+    - rightUpperArm
+    - rightLowerArm
+    - rightHand
+
+train:
+  batch_size: 128
+  epochs: 80
+  lr: 0.0003
+  weight_decay: 0.00001
+  val_ratio: 0.1
+  log_interval: 20
+  ckpt_dir: ./artifacts/checkpoints
+
+model:
+  hidden_dims: [256, 256]
+  dropout: 0.1
+
+export:
+  out_path: ./artifacts/exported/policy_bc.pt

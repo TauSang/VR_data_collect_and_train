@@ -1,0 +1,119 @@
+{
+  "arm_A_v9_p1_mj_only": {
+    "label": "v9_phase1_mj_only_baseline",
+    "ckpt": "20260425_train_v9/outputs/act_chunk/phase1_run_20260425_193808/checkpoints/best.pt",
+    "scale": 1.0,
+    "per_seed": [
+      {
+        "seed": 42,
+        "succ": 49,
+        "total": 50
+      },
+      {
+        "seed": 7,
+        "succ": 46,
+        "total": 50
+      },
+      {
+        "seed": 123,
+        "succ": 46,
+        "total": 50
+      },
+      {
+        "seed": 2024,
+        "succ": 42,
+        "total": 50
+      },
+      {
+        "seed": 31415,
+        "succ": 47,
+        "total": 50
+      }
+    ],
+    "agg_succ": 230,
+    "agg_total": 250,
+    "agg_sr": 92.0,
+    "worst_sr": 84.0
+  },
+  "arm_B_v9_p2_mj_vr1_3": {
+    "label": "v9_phase2_mj_vr1_3_baseline",
+    "ckpt": "20260425_train_v9/outputs/act_chunk/phase2_run_20260425_200159/checkpoints/best.pt",
+    "scale": 1.0,
+    "per_seed": [
+      {
+        "seed": 42,
+        "succ": 48,
+        "total": 50
+      },
+      {
+        "seed": 7,
+        "succ": 50,
+        "total": 50
+      },
+      {
+        "seed": 123,
+        "succ": 50,
+        "total": 50
+      },
+      {
+        "seed": 2024,
+        "succ": 50,
+        "total": 50
+      },
+      {
+        "seed": 31415,
+        "succ": 49,
+        "total": 50
+      }
+    ],
+    "agg_succ": 247,
+    "agg_total": 250,
+    "agg_sr": 98.8,
+    "worst_sr": 96.0
+  },
+  "arm_C_schemeA_mj_vr1_4": {
+    "label": "schemeA_v9p1_mj_vr1_4_batch256",
+    "ckpt": "20260426_train_v2/outputs/act_chunk/phase2_schemeA_run_20260426_142318/checkpoints/best.pt",
+    "scale": 1.0,
+    "per_seed": [
+      {
+        "seed": 42,
+        "succ": 50,
+        "total": 50
+      },
+      {
+        "seed": 7,
+        "succ": 47,
+        "total": 50
+      },
+      {
+        "seed": 123,
+        "succ": 47,
+        "total": 50
+      },
+      {
+        "seed": 2024,
+        "succ": 47,
+        "total": 50
+      },
+      {
+        "seed": 31415,
+        "succ": 47,
+        "total": 50
+      }
+    ],
+    "agg_succ": 238,
+    "agg_total": 250,
+    "agg_sr": 95.2,
+    "worst_sr": 94.0
+  },
+  "delta_scheme_vs_p1_pp": 3.200000000000003,
+  "delta_scheme_vs_v9_p2_pp": -3.5999999999999943,
+  "seeds": [
+    42,
+    7,
+    123,
+    2024,
+    31415
+  ]
+}

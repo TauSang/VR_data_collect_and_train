@@ -1,0 +1,71 @@
+{
+  "experiment": {
+    "name": "collector5_robot_task_policy_v3",
+    "description": "Robot-only, task-conditioned BC/ACT with multi-repr action (rot_vec), EE velocity, frame-level importance weighting. Schema v3."
+  },
+  "data": {
+    "episodes_jsonl": "../data_collector/collector5/vr-demonstrations-episodes-20260325_111750.jsonl",
+    "events_jsonl": "../data_collector/collector5/vr-demonstrations-events-20260325_111751.jsonl",
+    "joint_names": [
+      "leftShoulder",
+      "leftUpperArm",
+      "leftLowerArm",
+      "leftHand",
+      "rightShoulder",
+      "rightUpperArm",
+      "rightLowerArm",
+      "rightHand"
+    ],
+    "use_joint_velocities": true,
+    "include_end_effector_quat": true,
+    "include_phase": true,
+    "include_ee_velocity": true,
+    "action_repr": "rot_vec",
+    "allowed_outcomes": [
+      "success",
+      "timeout"
+    ],
+    "train_split": 0.8,
+    "seq_len": 16,
+    "obs_clip_z": 8.0,
+    "act_clip_z": 8.0,
+    "max_abs_joint_velocity": 10.0,
+    "max_abs_joint_delta": 1.0,
+    "sample_weighting": {
+      "success_bonus": 0.1,
+      "near_target_bonus": 0.25,
+      "near_target_threshold": 0.25,
+      "contact_bonus": 0.35,
+      "phase_bonus": 0.15,
+      "idle_discount": 0.3,
+      "moving_bonus": 0.05,
+      "approaching_bonus": 0.15,
+      "max_weight": 3.0
+    }
+  },
+  "train": {
+    "epochs": 80,
+    "batch_size": 128,
+    "lr": 0.0003,
+    "weight_decay": 1e-5,
+    "seed": 42,
+    "grad_clip_norm": 1.0,
+    "early_stop_patience": 12,
+    "success_loss_weight": 0.2
+  },
+  "bc": {
+    "hidden_dims": [
+      256,
+      256,
+      128
+    ],
+    "dropout": 0.1
+  },
+  "act": {
+    "d_model": 128,
+    "nhead": 4,
+    "num_layers": 2,
+    "dim_feedforward": 256,
+    "dropout": 0.1
+  }
+}

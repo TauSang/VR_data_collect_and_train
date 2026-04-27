@@ -1,0 +1,36 @@
+seed: 42
+
+data:
+  # 使用 collector3 最新导出（含 50 episodes）
+  raw_jsonl: ../data_collector/collector3/vr-demonstrations-episodes-20260313_155608.jsonl
+  h5_path: ./artifacts/datasets/collector3_50.h5
+  use_joint_velocities: true
+  include_gripper: false
+  joint_names:
+    - leftShoulder
+    - leftUpperArm
+    - leftLowerArm
+    - leftHand
+    - rightShoulder
+    - rightUpperArm
+    - rightLowerArm
+    - rightHand
+
+train:
+  batch_size: 256
+  epochs: 20
+  lr: 0.0003
+  weight_decay: 0.00001
+  val_ratio: 0.2
+  split_by_episode: true
+  log_interval: 20
+  ckpt_dir: ./artifacts/checkpoints_collector3_50
+  metrics_json: ./artifacts/checkpoints_collector3_50/metrics.json
+  metrics_csv: ./artifacts/checkpoints_collector3_50/metrics.csv
+
+model:
+  hidden_dims: [256, 256]
+  dropout: 0.1
+
+export:
+  out_path: ./artifacts/exported/policy_bc_collector3_50.pt

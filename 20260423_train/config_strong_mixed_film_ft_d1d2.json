@@ -1,0 +1,70 @@
+{
+    "experiment": "strong_mixed_film_ft_d1d2",
+    "description": "Mixed FiLM FT from MJ-weak pretrain (92% baseline). Data: MuJoCo expert v4 (MJ domain) + VR data1 (collector10_aligned) + VR data2 (data2_aligned). Paired comparison against strong_mixed_film_ft (d1 only, 50/50=100%) to show the value of the newly-collected data2 (23.7K additional VR frames). Expectation: maintain 100% SR while improving min_dist_m distribution / time-to-success.",
+    "data": {
+        "data_sources": [
+            {
+                "name": "mujoco_expert_v4",
+                "episodes_jsonl": "../data_collector/mujoco_expert_v4/episodes.jsonl",
+                "events_jsonl": "../data_collector/mujoco_expert_v4/events.jsonl",
+                "source_id": 0
+            },
+            {
+                "name": "collector10_aligned",
+                "episodes_jsonl": "../data_collector/collector10_aligned/episodes.jsonl",
+                "events_jsonl": "../data_collector/collector10_aligned/events.jsonl",
+                "source_id": 1
+            },
+            {
+                "name": "data2_aligned",
+                "episodes_jsonl": "../data_collector/data2_aligned/episodes.jsonl",
+                "events_jsonl": "../data_collector/data2_aligned/events.jsonl",
+                "source_id": 1
+            }
+        ],
+        "g1_joint_names": [
+            "left_shoulder_pitch_joint", "left_shoulder_roll_joint",
+            "left_shoulder_yaw_joint", "left_elbow_joint",
+            "right_shoulder_pitch_joint", "right_shoulder_roll_joint",
+            "right_shoulder_yaw_joint", "right_elbow_joint"
+        ],
+        "allowed_outcomes": ["success", "timeout"],
+        "train_split": 0.85,
+        "seq_len": 1,
+        "stride": 1,
+        "obs_clip_z": 8.0,
+        "act_clip_z": 8.0,
+        "max_abs_g1_velocity": 10.0,
+        "max_abs_g1_delta": 1.0,
+        "sample_weighting": {
+            "success_bonus": 0.5,
+            "near_target_bonus": 0.3,
+            "near_target_threshold": 0.25,
+            "idle_discount": 0.3,
+            "moving_bonus": 0.15,
+            "approaching_bonus": 0.25,
+            "max_weight": 3.0
+        }
+    },
+    "train": {
+        "seed": 42,
+        "epochs": 40,
+        "batch_size": 256,
+        "lr": 3e-5,
+        "weight_decay": 1e-4,
+        "grad_clip_norm": 1.0,
+        "early_stop_patience": 15,
+        "success_loss_weight": 0.2,
+        "obs_noise_std": 0.02,
+        "lr_scheduler": "cosine"
+    },
+    "act_chunk": {
+        "backbone": "mlp_film",
+        "chunk_size": 5,
+        "hidden_dims": [256, 256, 128],
+        "dropout": 0.1,
+        "num_domains": 2,
+        "cond_dim": 16,
+        "default_domain_id": 0
+    }
+}

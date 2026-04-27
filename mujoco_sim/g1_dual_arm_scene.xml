@@ -1,0 +1,51 @@
+<!--
+  G1 Dual-Arm Tabletop Task Scene
+  
+  场景: G1 固定在地面上, 前方有桌子, 桌上有球形目标
+  用途: 验证 VR 采集的 reach-and-hold 任务动作
+  
+  注意: 此文件 include 从 mujoco_menagerie 下载的 g1.xml
+  运行 setup_model.py 先下载模型
+-->
+<mujoco model="g1_dual_arm_task">
+  <compiler angle="radian"/>
+
+  <option integrator="implicitfast" timestep="0.002"/>
+
+  <include file="model/g1.xml"/>
+
+  <!-- 地面 -->
+  <worldbody>
+    <!-- 覆盖: 添加地面 -->
+    <geom name="floor" type="plane" size="5 5 0.1" rgba="0.8 0.8 0.8 1"
+          contype="1" conaffinity="1"/>
+
+    <!-- 桌子: 机器人前方 0.5m, 高度 0.75m -->
+    <body name="table" pos="0.5 0 0.375">
+      <geom name="table_top" type="box" size="0.4 0.6 0.02"
+            pos="0 0 0.375" rgba="0.6 0.4 0.2 1"
+            contype="1" conaffinity="1" mass="10"/>
+      <geom name="table_leg_fl" type="cylinder" size="0.03 0.375"
+            pos="0.35 0.55 0" rgba="0.5 0.3 0.15 1"/>
+      <geom name="table_leg_fr" type="cylinder" size="0.03 0.375"
+            pos="0.35 -0.55 0" rgba="0.5 0.3 0.15 1"/>
+      <geom name="table_leg_bl" type="cylinder" size="0.03 0.375"
+            pos="-0.35 0.55 0" rgba="0.5 0.3 0.15 1"/>
+      <geom name="table_leg_br" type="cylinder" size="0.03 0.375"
+            pos="-0.35 -0.55 0" rgba="0.5 0.3 0.15 1"/>
+    </body>
+
+    <!-- 目标球: 在桌面上方, 可由脚本动态移动 -->
+    <body name="target_ball" pos="0.5 0 0.8">
+      <geom name="target" type="sphere" size="0.04"
+            rgba="1 0.2 0.2 0.8"
+            contype="0" conaffinity="0" mass="0.01"/>
+      <site name="target_site" size="0.045" rgba="1 0 0 0.3"/>
+    </body>
+  </worldbody>
+
+  <!-- 末端执行器 site (用于距离检测) -->
+  <!-- 注意: g1.xml 中已有 left_foot/right_foot site -->
+  <!-- 我们在手部最末端添加 ee site，但由于 include 限制，-->
+  <!-- 改为在 Python 脚本中通过 body geometry 查询末端位置 -->
+</mujoco>

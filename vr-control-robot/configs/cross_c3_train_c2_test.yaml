@@ -1,0 +1,39 @@
+seed: 42
+
+experiment:
+  name: c3_train_c2_test
+  out_dir: ./artifacts/experiments
+
+data:
+  # 训练集：collector3
+  train_raw_jsonl: ../data_collector/collector3/vr-demonstrations-episodes-20260313_155608.jsonl
+  train_h5_path: ./artifacts/datasets/collector3_50.h5
+
+  # 测试集：collector2
+  test_raw_jsonl: ../data_collector/collector2/vr-demonstrations-episodes-20260313_142003.jsonl
+  test_h5_path: ./artifacts/datasets/collector2_test.h5
+
+  use_joint_velocities: true
+  include_gripper: false
+  joint_names:
+    - leftShoulder
+    - leftUpperArm
+    - leftLowerArm
+    - leftHand
+    - rightShoulder
+    - rightUpperArm
+    - rightLowerArm
+    - rightHand
+
+train:
+  batch_size: 256
+  epochs: 20
+  lr: 0.0003
+  weight_decay: 0.00001
+  val_ratio: 0.2
+  split_by_episode: true
+  log_interval: 20
+
+model:
+  hidden_dims: [256, 256]
+  dropout: 0.1

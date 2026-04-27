@@ -1,0 +1,81 @@
+# Logs
+logs
+*.log
+*.out
+*log.txt
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
+dist
+dist-ssr
+*.local
+.venv/
+.local-avatar-share/
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# MuJoCo model files (large, from mujoco_menagerie)
+mujoco_sim/model/
+
+# Training outputs / checkpoints / generated artifacts
+**/outputs/
+**/outputs_*/
+**/checkpoints/
+**/filtered_data/
+*.pt
+*.pth
+*.ckpt
+*.onnx
+*.npy
+*.npz
+*.pkl
+*.pickle
+*.zip
+*.tar
+*.tar.gz
+*.7z
+*.h5
+*.hdf5
+*.key
+*.pem
+*.p12
+*.pfx
+__pycache__/
+vr-control-robot/artifacts/
+mujoco_sim/render_output*/
+mujoco_sim/eval_frames/
+
+# Datasets / raw demonstrations (use separate storage, never push to GitHub)
+data_collector/
+VR_raw_data/
+*.jsonl
+
+# HPC / supercomputer deployment artifacts
+whuhpc/
+20260424_hpc/
+scripts/sync_to_whu_hpc.sh
+summary/HPC_USAGE_GUIDE.md
+summary/*HPC*.md
+
+# Local analysis artifacts
+act_eval_result.txt
+target_dist_analysis.txt
+$null

@@ -1,0 +1,42 @@
+[
+  {
+    "seed": 42,
+    "success": 50,
+    "total": 50,
+    "sr": 100.0,
+    "min_dist_p50": 0.1005,
+    "min_dist_max": 0.12
+  },
+  {
+    "seed": 7,
+    "success": 48,
+    "total": 50,
+    "sr": 96.0,
+    "min_dist_p50": 0.1015,
+    "min_dist_max": 0.182
+  },
+  {
+    "seed": 123,
+    "success": 40,
+    "total": 50,
+    "sr": 80.0,
+    "min_dist_p50": 0.104,
+    "min_dist_max": 0.275
+  },
+  {
+    "seed": 2024,
+    "success": 50,
+    "total": 50,
+    "sr": 100.0,
+    "min_dist_p50": 0.0955,
+    "min_dist_max": 0.118
+  },
+  {
+    "seed": 31415,
+    "success": 43,
+    "total": 50,
+    "sr": 86.0,
+    "min_dist_p50": 0.1035,
+    "min_dist_max": 0.175
+  }
+]

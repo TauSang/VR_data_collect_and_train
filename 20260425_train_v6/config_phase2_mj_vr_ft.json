@@ -1,0 +1,87 @@
+{
+    "experiment": "20260425_v6_phase2_mj_pretrain_vr_finetune_throughput",
+    "description": "v6 Phase 2: load Phase 1 best, finetune on MJ+VR (weighted_source). Same throughput-only changes as v6 Phase 1 (batch=2048, AMP bf16, num_workers=4, longer schedule). LR UNCHANGED (5e-5). NO EMA, NO smoothness.",
+    "data": {
+        "data_sources": [
+            {
+                "name": "mujoco_expert_v4",
+                "episodes_jsonl": "../data_collector/mujoco_expert_v4/episodes.jsonl",
+                "events_jsonl": "../data_collector/mujoco_expert_v4/events.jsonl",
+                "source_id": 0
+            },
+            {
+                "name": "vr1_aligned",
+                "episodes_jsonl": "../data_collector/vr1_aligned/episodes.jsonl",
+                "events_jsonl": "../data_collector/vr1_aligned/events.jsonl",
+                "source_id": 1
+            },
+            {
+                "name": "vr2_aligned",
+                "episodes_jsonl": "../data_collector/vr2_aligned/episodes.jsonl",
+                "events_jsonl": "../data_collector/vr2_aligned/events.jsonl",
+                "source_id": 1
+            },
+            {
+                "name": "vr3_aligned",
+                "episodes_jsonl": "../data_collector/vr3_aligned/episodes.jsonl",
+                "events_jsonl": "../data_collector/vr3_aligned/events.jsonl",
+                "source_id": 1
+            }
+        ],
+        "g1_joint_names": [
+            "left_shoulder_pitch_joint", "left_shoulder_roll_joint",
+            "left_shoulder_yaw_joint", "left_elbow_joint",
+            "right_shoulder_pitch_joint", "right_shoulder_roll_joint",
+            "right_shoulder_yaw_joint", "right_elbow_joint"
+        ],
+        "allowed_outcomes": ["success", "timeout"],
+        "train_split": 0.9,
+        "seq_len": 1,
+        "stride": 1,
+        "obs_clip_z": 8.0,
+        "act_clip_z": 8.0,
+        "max_abs_g1_velocity": 10.0,
+        "max_abs_g1_delta": 1.0,
+        "sample_weighting": {
+            "success_bonus": 0.5,
+            "near_target_bonus": 0.3,
+            "near_target_threshold": 0.25,
+            "idle_discount": 0.3,
+            "moving_bonus": 0.15,
+            "approaching_bonus": 0.25,
+            "max_weight": 3.0
+        }
+    },
+    "train": {
+        "seed": 42,
+        "epochs": 1500,
+        "batch_size": 2048,
+        "lr": 5e-5,
+        "weight_decay": 1e-4,
+        "grad_clip_norm": 1.0,
+        "early_stop_patience": 300,
+        "success_loss_weight": 0.2,
+        "obs_noise_std": 0.03,
+        "lr_scheduler": "cosine",
+        "lr_warmup_epochs": 10,
+        "sampler": "weighted_source",
+        "source_ratio": {"0": 1.5, "1": 1.0},
+        "source_ratio_default": 1.0,
+        "loss_type": "mse",
+        "save_topk": 3,
+        "amp": true,
+        "amp_dtype": "bfloat16",
+        "num_workers": 4,
+        "pin_memory": true,
+        "persistent_workers": true
+    },
+    "act_chunk": {
+        "backbone": "mlp_film",
+        "chunk_size": 5,
+        "hidden_dims": [1024, 1024, 512],
+        "dropout": 0.1,
+        "num_domains": 2,
+        "cond_dim": 16,
+        "default_domain_id": 0
+    }
+}

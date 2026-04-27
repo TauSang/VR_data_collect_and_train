@@ -1,0 +1,59 @@
+{
+    "experiment": "vr_mixed_finetune",
+    "description": "Stage 2 MIXED FINETUNE from weak-mujoco pretrain. Uses pretrain's normalizer (critical for cross-domain). Mixes VR + weak-mujoco to introduce VR signal while preventing catastrophic forgetting. Low lr to preserve pretrain.",
+    "data": {
+        "data_sources": [
+            {
+                "name": "collector10",
+                "episodes_jsonl": "../data_collector/collector10/vr-demonstrations-episodes-20260422_170038.jsonl",
+                "events_jsonl": "../data_collector/collector10/vr-demonstrations-events-20260422_170039.jsonl"
+            },
+            {
+                "name": "mujoco_expert_v4_weak",
+                "episodes_jsonl": "../data_collector/mujoco_expert_v4_weak/episodes.jsonl",
+                "events_jsonl": "../data_collector/mujoco_expert_v4_weak/events.jsonl"
+            }
+        ],
+        "g1_joint_names": [
+            "left_shoulder_pitch_joint", "left_shoulder_roll_joint",
+            "left_shoulder_yaw_joint", "left_elbow_joint",
+            "right_shoulder_pitch_joint", "right_shoulder_roll_joint",
+            "right_shoulder_yaw_joint", "right_elbow_joint"
+        ],
+        "allowed_outcomes": ["success", "timeout"],
+        "train_split": 0.85,
+        "seq_len": 1,
+        "stride": 1,
+        "obs_clip_z": 8.0,
+        "act_clip_z": 8.0,
+        "max_abs_g1_velocity": 10.0,
+        "max_abs_g1_delta": 1.0,
+        "sample_weighting": {
+            "success_bonus": 0.5,
+            "near_target_bonus": 0.3,
+            "near_target_threshold": 0.25,
+            "idle_discount": 0.3,
+            "moving_bonus": 0.15,
+            "approaching_bonus": 0.25,
+            "max_weight": 3.0
+        }
+    },
+    "train": {
+        "seed": 42,
+        "epochs": 40,
+        "batch_size": 256,
+        "lr": 3e-5,
+        "weight_decay": 1e-4,
+        "grad_clip_norm": 1.0,
+        "early_stop_patience": 15,
+        "success_loss_weight": 0.2,
+        "obs_noise_std": 0.02,
+        "lr_scheduler": "cosine"
+    },
+    "act_chunk": {
+        "backbone": "mlp",
+        "chunk_size": 5,
+        "hidden_dims": [256, 256, 128],
+        "dropout": 0.1
+    }
+}

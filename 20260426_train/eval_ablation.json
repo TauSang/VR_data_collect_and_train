@@ -1,0 +1,82 @@
+{
+  "arm_A_mj_only": {
+    "label": "20260426_phase1_mj_only_gated_cross_attn_film_v9_arch",
+    "ckpt": "20260426_train/outputs/act_chunk/phase1_run_20260426_124651/checkpoints/best.pt",
+    "scale": 1.0,
+    "per_seed": [
+      {
+        "seed": 42,
+        "succ": 44,
+        "total": 50
+      },
+      {
+        "seed": 7,
+        "succ": 36,
+        "total": 50
+      },
+      {
+        "seed": 123,
+        "succ": 45,
+        "total": 50
+      },
+      {
+        "seed": 2024,
+        "succ": 36,
+        "total": 50
+      },
+      {
+        "seed": 31415,
+        "succ": 41,
+        "total": 50
+      }
+    ],
+    "agg_succ": 202,
+    "agg_total": 250,
+    "agg_sr": 80.8,
+    "worst_sr": 72.0
+  },
+  "arm_B_mj_vr_ft": {
+    "label": "20260426_phase2_mj_vr1_4_ft_gated_cross_attn_film_v9_arch_batch512",
+    "ckpt": "20260426_train/outputs/act_chunk/phase2_run_20260426_130652/checkpoints/best.pt",
+    "scale": 1.0,
+    "per_seed": [
+      {
+        "seed": 42,
+        "succ": 47,
+        "total": 50
+      },
+      {
+        "seed": 7,
+        "succ": 47,
+        "total": 50
+      },
+      {
+        "seed": 123,
+        "succ": 46,
+        "total": 50
+      },
+      {
+        "seed": 2024,
+        "succ": 50,
+        "total": 50
+      },
+      {
+        "seed": 31415,
+        "succ": 44,
+        "total": 50
+      }
+    ],
+    "agg_succ": 234,
+    "agg_total": 250,
+    "agg_sr": 93.6,
+    "worst_sr": 88.0
+  },
+  "delta_pp": 12.799999999999997,
+  "seeds": [
+    42,
+    7,
+    123,
+    2024,
+    31415
+  ]
+}

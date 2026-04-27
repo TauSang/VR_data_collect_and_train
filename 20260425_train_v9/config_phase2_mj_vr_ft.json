@@ -1,0 +1,87 @@
+{
+    "experiment": "20260425_v9_phase2_mj_pretrain_vr_finetune_gated_cross_attn_film_v2recipe",
+    "description": "v9 Phase 2 candidate: load v9 Phase 1 best and finetune with the v2-proven unfrozen recipe on MJ+VR1-3 (batch=256, lr=5e-5, epochs=600, patience=120). This tests whether v8 underperformance is due to freeze/VR4/large-batch rather than the attention residual itself.",
+    "data": {
+        "data_sources": [
+            {
+                "name": "mujoco_expert_v4",
+                "episodes_jsonl": "../data_collector/mujoco_expert_v4/episodes.jsonl",
+                "events_jsonl": "../data_collector/mujoco_expert_v4/events.jsonl",
+                "source_id": 0
+            },
+            {
+                "name": "vr1_aligned",
+                "episodes_jsonl": "../data_collector/vr1_aligned/episodes.jsonl",
+                "events_jsonl": "../data_collector/vr1_aligned/events.jsonl",
+                "source_id": 1
+            },
+            {
+                "name": "vr2_aligned",
+                "episodes_jsonl": "../data_collector/vr2_aligned/episodes.jsonl",
+                "events_jsonl": "../data_collector/vr2_aligned/events.jsonl",
+                "source_id": 1
+            },
+            {
+                "name": "vr3_aligned",
+                "episodes_jsonl": "../data_collector/vr3_aligned/episodes.jsonl",
+                "events_jsonl": "../data_collector/vr3_aligned/events.jsonl",
+                "source_id": 1
+            }
+        ],
+        "g1_joint_names": [
+            "left_shoulder_pitch_joint", "left_shoulder_roll_joint",
+            "left_shoulder_yaw_joint", "left_elbow_joint",
+            "right_shoulder_pitch_joint", "right_shoulder_roll_joint",
+            "right_shoulder_yaw_joint", "right_elbow_joint"
+        ],
+        "allowed_outcomes": ["success", "timeout"],
+        "train_split": 0.9,
+        "seq_len": 1,
+        "stride": 1,
+        "obs_clip_z": 8.0,
+        "act_clip_z": 8.0,
+        "max_abs_g1_velocity": 10.0,
+        "max_abs_g1_delta": 1.0,
+        "sample_weighting": {
+            "success_bonus": 0.5,
+            "near_target_bonus": 0.3,
+            "near_target_threshold": 0.25,
+            "idle_discount": 0.3,
+            "moving_bonus": 0.15,
+            "approaching_bonus": 0.25,
+            "max_weight": 3.0
+        }
+    },
+    "train": {
+        "seed": 42,
+        "epochs": 600,
+        "batch_size": 256,
+        "lr": 5e-5,
+        "weight_decay": 1e-4,
+        "grad_clip_norm": 1.0,
+        "early_stop_patience": 120,
+        "success_loss_weight": 0.2,
+        "obs_noise_std": 0.03,
+        "lr_scheduler": "cosine",
+        "lr_warmup_epochs": 5,
+        "sampler": "weighted_source",
+        "source_ratio": {"0": 1.5, "1": 1.0},
+        "source_ratio_default": 1.0,
+        "loss_type": "mse",
+        "save_topk": 3
+    },
+    "act_chunk": {
+        "backbone": "gated_cross_attn_film",
+        "chunk_size": 5,
+        "d_model": 64,
+        "nhead": 4,
+        "hidden_dims": [1024, 1024, 512],
+        "dropout": 0.1,
+        "attn_dropout": 0.05,
+        "residual_init": 0.01,
+        "num_domains": 2,
+        "cond_dim": 16,
+        "default_domain_id": 0,
+        "proprio_dim": 16
+    }
+}
